@@ -302,9 +302,9 @@ CONFIG += console newstuff
 
 newstuff {
 
-SOURCES += new.cpp
+  SOURCES += new.cpp
 
-HEADERS += new.h
+  HEADERS += new.h
 
 }
 ```
