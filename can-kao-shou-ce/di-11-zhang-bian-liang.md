@@ -383,13 +383,11 @@ FORMS
 指定要在编译前由uic处理的UI文件(请参见Qt设计师手册)。构建这些UI文件所需的所有依赖项、头文件和源文件都将自动添加到项目中。
 
 例如：
-
-FORMS = mydialog.ui \\
-
-mywidget.ui \\
-
-myconfig.ui
-
+```
+  FORMS = mydialog.ui \
+          mywidget.ui \
+          myconfig.ui
+```
 GUID
 
 指定在.vcproj文件中设置的GUID。GUID通常是随机确定的。但是，如果您需要一个固定的GUID，它可以使用这个变量进行设置。
@@ -403,13 +401,11 @@ HEADERS
 qmake会自动检测报头中的类是否需要moc，并将适当的依赖项和文件添加到项目中，以生成和链接moc文件。
 
 例如：
-
-HEADERS = myclass.h \\
-
-login.h \\
-
-mainwindow.h
-
+```
+  HEADERS = myclass.h \
+            login.h \
+            mainwindow.h
+```
 另请参见SOURCES。
 
 ICON
