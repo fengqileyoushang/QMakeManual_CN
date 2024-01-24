@@ -220,11 +220,11 @@ CONFIG
 
 在后一个过程中，build\_pass和相应的debug或release选项被附加到CONFIG中。这使得执行特定于构建的任务成为可能。例如：
 ```
-build\_pass:CONFIG(debug, debug|release) {
+build_pass:CONFIG(debug, debug|release) {
 
-  unix: TARGET = \$$join(TARGET,,,\_debug)
+  unix: TARGET = $$join(TARGET,,,_debug)
 
-  else: TARGET = \$$join(TARGET,,,d)
+  else: TARGET = $$join(TARGET,,,d)
 
 }
 ```
