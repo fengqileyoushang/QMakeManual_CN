@@ -313,6 +313,9 @@ DEFINES
 qmake将此变量的值添加为C编译器的预处理器宏(-D选项)。
 
 例如：
+```
+DEFINES += USE_MY_STUFF
+```
 
 DEFINES\_DEBUG
 
