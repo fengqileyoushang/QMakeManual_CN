@@ -219,15 +219,15 @@ CONFIG
 当您使用debug\_and\_release选项（这是Windows下的默认选项）时，项目将被处理三次：一次生成元Makefile，还有两次生成Makefile.Debug和Makefile.Release
 
 在后一个过程中，build\_pass和相应的debug或release选项被附加到CONFIG中。这使得执行特定于构建的任务成为可能。例如：
-
+```
 build\_pass:CONFIG(debug, debug|release) {
 
-unix: TARGET = \$$join(TARGET,,,\_debug)
+  unix: TARGET = \$$join(TARGET,,,\_debug)
 
-else: TARGET = \$$join(TARGET,,,d)
+  else: TARGET = \$$join(TARGET,,,d)
 
 }
-
+```
 作为手动编写构建类型条件的替代方法，一些变量提供了特定于构建的变体，例如除了一般的QMAKE\_LFLAGS之外的QMAKE\_LFLAGS\_RELEASE。这些应该在可用时使用。
 
 元Makefile可以通过debug和release目标来调用子构建，并通过all目标进行组合构建。当使用build\_all配置选项时，组合构建是默认版本。否则，来自集(debug、release)的最后一个指定的配置选项将确定默认值。在这种情况下，您可以显式地调用所有目标来同时构建这两种配置：
