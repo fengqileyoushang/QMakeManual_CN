@@ -295,7 +295,7 @@ else: TARGET = \$$join(TARGET,,,d)
 在解析作用域范围时，也将检查CONFIG变量。您可以为这个变量分配任何东西。
 
 例如：
-
+```
 CONFIG += console newstuff
 
 ...
@@ -307,7 +307,7 @@ SOURCES += new.cpp
 HEADERS += new.h
 
 }
-
+```
 DEFINES
 
 qmake将此变量的值添加为C编译器的预处理器宏(-D选项)。
