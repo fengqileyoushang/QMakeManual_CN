@@ -421,27 +421,25 @@ INCLUDEPATH
 指定在编译项目时应该搜索的#include目录。
 
 例如：
-
+```
 INCLUDEPATH = c:/msdev/include d:/stl/include
-
+```
 若要指定包含空格的路径，请使用Whitespace中描述的技术引用该路径。
-
+```
 win32:INCLUDEPATH += "C:/mylibs/extra headers"
-
 unix:INCLUDEPATH += "/home/user/extra headers"
+```
 
 INSTALLS
-
 指定在执行make install或类似安装过程时将安装的资源列表。列表中的每个项目通常都使用属性定义，这些属性提供有关它将安装位置的信息。
 
 例如，以下target.path定义描述了将安装生成目标的位置，并且INSTALLS任务会将生成目标添加到要安装的现有资源的列表中：
-
-target.path += \$$\[QT\_INSTALL\_PLUGINS]/imageformats
-
+```
+target.path += $$[QT_INSTALL_PLUGINS]/imageformats
 INSTALLS += target
+```
 
 INSTALLS有一个.config成员，可以接受多个值：
-
 | **值**                | **描述**                                                                                                   |
 | -------------------- | -------------------------------------------------------------------------------------------------------- |
 | no\_check\_exist     | 如果没有设置，qmake将查看要安装的文件是否确实存在，如果这些文件不存在，则qmake将不创建安装规则。如果您需要安装作为构建过程的一部分生成的文件，比如由qdoc创建的HTML文件，请使用此配置值。    |
