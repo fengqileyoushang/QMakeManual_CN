@@ -477,16 +477,15 @@ LIBS
 指定要链接到项目中的库的列表。如果使用Unix的-l（库）和-L（库路径）标志，qmake将在Windows上正确地处理库（即，将库的完整路径传递给链接器）。qmake必须存在该库，才能找到-l库所在的目录。
 
 例如：
-
+```
 unix:LIBS += -L/usr/local/lib -lmath
-
 win32:LIBS += c:/mylibs/math.lib
-
+```
 若要指定包含空格的路径，请使用空格章节中描述的技术引用该路径。
-
+```
 win32:LIBS += "C:/mylibs/extra libs/extra.lib"
-
 unix:LIBS += "-L/home/user/extra libs" -lextra
+```
 
 默认情况下，存储在LIBS中的库的列表在使用之前会简化为唯一名称的列表。要更改此行为，请向配置变量中添加no\_lflags\_merge选项：
 
@@ -503,12 +502,11 @@ LITERAL\_HASH
 当变量声明中需要文字哈希字符（#）时，将使用此变量，可能作为文件名的一部分或传递给某些外部应用程序的字符串。
 
 例如：
-
-\# To include a literal hash character, use the \$$LITERAL\_HASH variable:
-
+```
+# To include a literal hash character, use the $$LITERAL_HASH variable:
 urlPieces = http://doc.qt.io/qt-5/qtextdocument.html pageCount
-
-message(\$$join(urlPieces, \$$LITERAL\_HASH))
+message($$join(urlPieces, $$LITERAL_HASH))
+```
 
 通过以这种方式使用LITERAL\_HASH，可以使用#字符来构造一个message()函数打印到控制台使用的URL。
 
@@ -529,10 +527,10 @@ MOC\_DIR
 指定所有中间moc文件的目录。
 
 例如：
-
-unix:MOC\_DIR = ../myproject/tmp
-
-win32:MOC\_DIR = c:/myproject/tmp
+```
+unix:MOC_DIR = ../myproject/tmp
+win32:MOC_DIR = c:/myproject/tmp
+```
 
 OBJECTIVE\_HEADERS
 
@@ -561,10 +559,10 @@ OBJECTS\_DIR
 指定应放置所有中间对象的目录。
 
 例如：
-
-unix:OBJECTS\_DIR = ../myproject/tmp
-
-win32:OBJECTS\_DIR = c:/myproject/tmp
+```
+unix:OBJECTS_DIR = ../myproject/tmp
+win32:OBJECTS_DIR = c:/myproject/tmp
+```
 
 POST\_TARGETDEPS
 
@@ -633,14 +631,12 @@ QMAKE\_BUNDLE\_DATA
 指定将与库包一起安装的数据，并且通常用于指定头文件的集合。
 
 例如，以下行将path/to/header\_one.h和path/to/header\_two.h添加到包含框架提供的头信息的组：
-
-FRAMEWORK\_HEADERS.version = Versions
-
-FRAMEWORK\_HEADERS.files = path/to/header\_one.h path/to/header\_two.h
-
-FRAMEWORK\_HEADERS.path = Headers
-
-QMAKE\_BUNDLE\_DATA += FRAMEWORK\_HEADERS
+```
+FRAMEWORK_HEADERS.version = Versions
+FRAMEWORK_HEADERS.files = path/to/header\_one.h path/to/header_two.h
+FRAMEWORK_HEADERS.path = Headers
+QMAKE_BUNDLE_DATA += FRAMEWORK_HEADERS
+```
 
 最后一行将有关标题的信息添加到将与库包一起安装的资源集合中。
 
@@ -854,14 +850,12 @@ QMAKE\_HOST
 | .name            | 主机名         |
 | .version         | 主机操作系统版本号   |
 | .version\_string | 主机操作系统版本字符串 |
-
-win32-g++:contains(QMAKE\_HOST.arch, x86\_64):{
-
-message("Host is 64bit")
-
-...
-
+```
+win32-g++:contains(QMAKE_HOST.arch, x86_64):{
+  message("Host is 64bit")
+  ...
 }
+```
 
 QMAKE\_INCDIR
 
@@ -1365,6 +1359,9 @@ QT
 默认情况下，QT包含core和gui，从而确保可以在没有进一步配置的情况下构建标准的GUI应用程序。
 
 如果您想构建一个没有QtGUI模块的项目，则需要使用“-=”操作符排除GUI值。下面的一行将导致正在构建一个最小的Qt项目：
+```
+QT -= gui # Only the core module is used.
+```
 
 如果您的项目是一个Qt设计师插件，请使用值uiplugin来指定该项目将作为一个库构建，但有特定的插件支持Qt设计师。有关详细信息，请参见构建和安装插件。
 
@@ -1423,10 +1420,10 @@ RCC\_DIR
 指定Qt资源编译器输出文件的目录。
 
 例如：
-
-unix:RCC\_DIR = ../myproject/resources
-
-win32:RCC\_DIR = c:/myproject/resources.
+```
+unix:RCC_DIR = ../myproject/resources
+win32:RCC_DIR = c:/myproject/resources.
+```
 
 REQUIRES
 
@@ -1449,12 +1446,11 @@ SOURCES
 指定项目中的所有源文件的名称。
 
 例如：
-
-SOURCES = myclass.cpp \\
-
-login.cpp \\
-
-mainwindow.cpp
+```
+SOURCES = myclass.cpp \
+          login.cpp \
+          mainwindow.cpp
+```
 
 另请参见HEADERS。
 
@@ -1467,22 +1463,20 @@ SUBDIRS
 或者，您也可以在任何目录中指定一个.pro文件的相对路径。强烈建议您只指定当前项目的父目录或其子目录中的路径。
 
 例如：
-
-SUBDIRS = kernel \\
-
-tools \\
-
-myapp
+```
+SUBDIRS = kernel \
+          tools \
+          myapp
+```
 
 如果需要确保子目录按特定顺序构建，请对相关的SUBDIRS元素使用.depends修改符。
 
 例如：
-
-SUBDIRS += my\_executable my\_library tests doc
-
-my\_executable.depends = my\_library
-
-tests.depends = my\_executable
+```
+SUBDIRS += my_executable my_library tests doc
+my_executable.depends = my_library
+tests.depends = my_executable
+```
 
 上面的配置确保了my\_library在my\_executable之前构建，并且my\_executable是在测试之前构建。但是，doc可以与其他子目录并行构建，从而加快了构建过程。
 
@@ -1501,26 +1495,23 @@ tests.depends = my\_executable
 | .target   | 用于创建与此子项目相关的文件目标的基字符串。仅在使用makefile的平台上可用。 |
 
 例如，定义两个子目录，这两个子目录都位于与子目录值不同的目录中，并且其中一个子目录必须大于另一个子目录：
-
-SUBDIRS += my\_executable my\_library
-
-my\_executable.subdir = app
-
-my\_executable.depends = my\_library
-
-my\_library.subdir = lib
+```
+SUBDIRS += my_executable my_library
+my_executable.subdir = app
+my_executable.depends = my_library
+my_library.subdir = lib
+```
 
 TARGET
 
 指定目标文件的名称。默认情况下，包含项目文件的基本名称。
 
 例如：
-
+```
 TEMPLATE = app
-
 TARGET = myapp
-
 SOURCES = main.cpp
+```
 
 上面的项目文件将在unix上生成一个名为myapp的可执行文件，在Windows上生成一个名为myapp.exe的可执行文件。
 
@@ -1554,12 +1545,11 @@ TEMPLATE
 | vclib   | 仅限Windows。为VisualStudio创建一个库项目。                                                                                                  |
 
 例如：
-
+```
 TEMPLATE = lib
-
 SOURCES = main.cpp
-
 TARGET = mylib
+```
 
 可以通过使用-t命令行选项指定一个新的模板类型来覆盖该模板。这将在处理完.pro文件_之后_覆盖模板类型。对于使用模板类型来确定项目是如何构建的的.pro文件，有必要在命令行上声明模板，而不是使用-t选项。
 
@@ -1578,10 +1568,10 @@ UI\_DIR
 指定uic中所有中间文件的目录。
 
 例如：
-
-unix:UI\_DIR = ../myproject/ui
-
-win32:UI\_DIR = c:/myproject/ui
+```
+unix:UI_DIR = ../myproject/ui
+win32:UI_DIR = c:/myproject/ui
+```
 
 VERSION
 
@@ -1590,10 +1580,10 @@ VERSION
 在Windows上，如果未设置RC\_FILE和RES\_FILE变量，则会触发.rc文件的自动生成。生成的.rc文件将有FILEVERSION和PRODUCTVERSION的条目，其中填充了主要、次要、补丁级别和内部版本号。每个数字必须在0到65535的范围内。关于生成.rc文件的更多细节可以在系统平台说明中找到。
 
 例如：
-
+```
 win32:VERSION = 1.2.3.4 # major.minor.patch.build
-
 else:VERSION = 1.2.3 # major.minor.patch
+```
 
 VERSION\_PE\_HEADER
 
@@ -1677,14 +1667,12 @@ WINRT\_MANIFEST
 您可以使用这些值的任何组合。
 
 例如：
-
-WINRT\_MANIFEST.publisher = MyCompany
-
-WINRT\_MANIFEST.logo\_store = someImage.png
-
-WINRT\_MANIFEST.capabilities += internetClient
-
-WINRT\_MANIFEST.capabilities\_device += location
+```
+WINRT_MANIFEST.publisher = MyCompany
+WINRT_MANIFEST.logo_store = someImage.png
+WINRT_MANIFEST.capabilities += internetClient
+WINRT_MANIFEST.capabilities_device += location
+```
 
 此外，还可以通过使用WINRT\_MANIFEST来指定一个输入清单文件。
 
@@ -1709,6 +1697,9 @@ YACCSOURCES
 正在使用的项目文件的路径。
 
 例如，以下一行导致将项目文件的位置写到控制台：
+```
+message($$_PRO_FILE_)
+```
 
 注：不要试图覆盖此变量的值。
 
@@ -1717,7 +1708,7 @@ YACCSOURCES
 正在使用的项目文件所在的目录的路径。
 
 例如，以下该行会导致将包含项目文件的目录的位置写入控制台：
-
-message(\$$\_PRO\_FILE\_PWD\_)
-
+```
+message($$_PRO_FILE_PWD_)
+```
 注：不要试图覆盖此变量的值。
