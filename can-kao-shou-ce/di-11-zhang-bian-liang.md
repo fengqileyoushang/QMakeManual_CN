@@ -346,6 +346,9 @@ DESTDIR
 指定要放置目标(target)文件的位置。
 
 例如：
+```
+DESTDIR = ../../lib
+```
 
 注：受支持的字符列表可能取决于所使用的构建工具。特别是，括号与make不起作用。
 
@@ -354,9 +357,9 @@ DISTFILES
 指定要包含在dist target中的文件的列表。仅限UnixMake的spec文件支持此特性。
 
 例如：
-
+```
 DISTFILES += ../program.txt
-
+```
 译注：dist target是make中的概念
 
 DLLDESTDIR
