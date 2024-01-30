@@ -27,10 +27,10 @@ basename(variablename)
 返回在variablename中指定的文件的基名。
 
 例如：
-
+```
 FILE = /etc/passwd
-
-FILENAME = \$$basename(FILE) #passwd
+FILENAME = $$basename(FILE) #passwd
+```
 
 cat(filename\[, mode])
 
