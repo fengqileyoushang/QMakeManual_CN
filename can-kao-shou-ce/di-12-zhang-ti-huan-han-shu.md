@@ -15,9 +15,9 @@ absolute\_path(path\[, base])
 如果未指定基础目录，请使用当前目录作为基础目录。如果它是一个相对路径，则在使用之前将它相对于当前目录进行解析。
 
 例如，下面的调用返回字符串“/home/johndoe/myproject/readme.txt”：
-
-message(\$$absolute\_path("readme.txt", "/home/johndoe/myproject"))
-
+```
+message($$absolute_path("readme.txt", "/home/johndoe/myproject"))
+```
 这个函数在Qt5.0中引入。
 
 另请参见clean\_path()，relative\_path()。
@@ -51,10 +51,10 @@ clean\_path(path)
 dirname(file)
 
 返回指定文件的目录名部分。例如：
-
+```
 FILE = /etc/X11R6/XF86Config
-
-DIRNAME = \$$dirname(FILE) #/etc/X11R6
+DIRNAME = $$dirname(FILE) #/etc/X11R6
+```
 
 enumerate\_vars
 
@@ -67,19 +67,18 @@ escape\_expand(arg1\[，arg2...，argn])
 接受任意数量的参数。它为每个参数展开了转义序列\n、\r、\t，并将这些参数以列表的形式返回。
 
 注：如果指定字符串，则需要避开反斜杠，如下代码片段所示：
-
-message("First line\$$escape\_expand(\\\n)Second line")
+```
+message("First line$$escape_expand(\\n)Second line")
+```
 
 find(variablename, substr)
 
 返回variablename中与正则表达式substr匹配的所有值。
-
-MY\_VAR = one two three four
-
-MY\_VAR2 = \$$join(MY\_VAR, " -L", -L) -Lfive
-
-MY\_VAR3 = \$$member(MY\_VAR, 2) \$$find(MY\_VAR, t.\*)
-
+```
+MY_VAR = one two three four
+MY_VAR2 = $$join(MY_VAR, " -L", -L) -Lfive
+MY_VAR3 = $$member(MY_VAR, 2) $$find(MY\_VAR, t.*)
+```
 MY\_VAR2将包含“-Lone -Ltwo -Lthree -Lfour -Lfive”，而MY\_VAR3将包含“three two three”。
 
 files(pattern\[, recursive=false])
@@ -91,10 +90,10 @@ first(variablename)
 返回变量名的第一个值。
 
 例如，以下调用返回名：
-
+```
 CONTACT = firstname middlename surname phone
-
-message(\$$first(CONTACT))
+message($$first(CONTACT))
+```
 
 另请参见take\_first(),last()。
 
