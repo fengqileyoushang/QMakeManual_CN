@@ -125,7 +125,7 @@ fromfile(filename, variablename)
 
 getenv(variablename)
 
-返回环境变量变量的值。这基本上相当于\$$(variablename)语法。然而，getenv()支持在其名称中添加圆括号的环境变量。
+返回环境变量variablename的值。这基本上相当于\$$(variablename)语法。然而，getenv()支持在其名称中添加圆括号的环境变量。
 
 这个函数在Qt5.12中引入。
 
