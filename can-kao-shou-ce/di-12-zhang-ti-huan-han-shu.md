@@ -138,32 +138,29 @@ last(variablename)
 返回variablename的最后一个值。
 
 例如，以下电话返回phone：
-
+```
 CONTACT = firstname middlename surname phone
-
-message(\$$last(CONTACT))
+message($$last(CONTACT))
+```
 
 另请参见take\_last(), first()。
 
 list(arg1\[，arg2...，argn])
 
 接受任意数量的参数。它创建一个包含参数列表的唯一命名变量，并返回该变量的名称。您可以使用该变量来编写一个循环，代码片段如下所示：
-
-for(var, \$$list(foo bar baz)) {
-
-...
-
+```
+for(var, $$list(foo bar baz)) {
+  ...
 }
+```
 
 来代替：
-
+```
 values = foo bar baz
-
 for(var, values) {
-
-...
-
+  ...
 }
+```
 
 lower(arg1 \[, arg2 ..., argn])
 
@@ -191,16 +188,16 @@ num\_add(arg1\[，arg2...，argn])
 取任意数量的数字参数，并将它们相加，返回和。
 
 减法被隐式地支持，因为可以简单地在一个数值前加一个负号：
-
-sum = \$$num\_add(\$$first, -\$$second)
+```
+sum = $$num_add($$first, -$$second)
+```
 
 如果操作数可能已经为负数，则需要另一个步骤来规范化这个数字：
-
-second\_neg = -\$$second
-
-second\_neg \~= s/^--//
-
-sum = \$$num\_add(\$$first, \$$second\_neg)
+```
+second_neg = -$$second
+second_neg ~= s^--//
+sum = $$num_add($$first, $$second_neg)
+```
 
 该函数在Qt5.8中引入。
 
