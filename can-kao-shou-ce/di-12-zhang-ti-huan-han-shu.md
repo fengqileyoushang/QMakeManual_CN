@@ -242,12 +242,13 @@ relative\_path(filePath\[, base])
 replace(string, old\_string, new\_string)
 
 在作为字符串提供的变量的内容中，用new\_string替换old\_string的每个实例。例如，代码
-
+```
 MESSAGE = This is a tent.
-
-message(\$$replace(MESSAGE, tent, test))
+message($$replace(MESSAGE, tent, test))
+```
 
 会打印消息：
+This is a test.
 
 resolve\_depends(variablename, prefix)
 
@@ -266,10 +267,10 @@ section(variablename, separator, begin, end)
 返回variablename的值的一部分。这个函数包装了QString::section。
 
 例如，以下调用输出surname：
-
+```
 CONTACT = firstname:middlename:surname:phone
-
-message(\$$section(CONTACT, :, 2, 2))
+message($$section(CONTACT, :, 2, 2))
+```
 
 shadowed(path)
 
@@ -318,10 +319,10 @@ split(variablename, separator)
 将variablename的值分割为单独的值，并将它们作为一个列表返回。这个函数包装了QString::split()。
 
 例如：
-
+```
 CONTACT = firstname:middlename:surname:phone
-
-message(\$$split(CONTACT, :))
+message($$split(CONTACT, :))
+```
 
 sprintf(string, arguments...)
 
@@ -332,26 +333,22 @@ str\_member(arg \[, start \[, end]])
 这个函数与member()相同，只是它操作了一个字符串值，而不是一个列表变量，因此索引引用了字符位置。
 
 这个函数可用于实现许多常见的字符串切片操作：
+```
+# $$left(VAR, len)
+left = $$str_member(VAR, 0, $$num_add($$len, -1))
 
-\# \$$left(VAR, len)
+# $$right(VAR, len)
+right = $$str_member(VAR, -$$num, -1)
 
-left = \$$str\_member(VAR, 0, \$$num\_add(\$$len, -1))
+# $$mid(VAR, off, len)
+mid = $$str_member(VAR, $$off, $$num_add($$off, $$len, -1))
 
-\# \$$right(VAR, len)
+# $$mid(VAR, off)
+mid = $$str_member(VAR, $$off, -1)
 
-right = \$$str\_member(VAR, -\$$num, -1)
-
-\# \$$mid(VAR, off, len)
-
-mid = \$$str\_member(VAR, \$$off, \$$num\_add(\$$off, \$$len, -1))
-
-\# \$$mid(VAR, off)
-
-mid = \$$str\_member(VAR, \$$off, -1)
-
-\# \$$reverse(VAR)
-
-reverse = \$$str\_member(VAR, -1, 0)
+# $$reverse(VAR)
+reverse = $$str_member(VAR, -1, 0)
+```
 
 注：在这些实现中，需要单独处理一个零len参数。
 
@@ -372,10 +369,10 @@ system(command\[, mode\[, stsvar]])
 您可以使用系统函数的这个变体从命令中获取静态数据，并将其分配给一个变量。
 
 例如：
-
-UNAME = \$$system(uname -s)
-
-contains( UNAME, \[lL]inux ):message( This looks like Linux (\$$UNAME) to me )
+```
+UNAME = $$system(uname -s)
+contains(UNAME, [lL]inux ):message( This looks like Linux ($$UNAME) to me )
+```
 
 与\$$cat()一样，模式参数将blob、lines、true和false作为值。然而，传统的单词拆分规则（即空或true和false）有细微的差别。
 
